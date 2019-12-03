@@ -25,6 +25,7 @@ class CreateBlogPostsTable extends Migration
             $table->text('content_raw');
             $table->text('content_html');
             $table->boolean('is_published')->default(false);
+            $table->index('is_published');
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
