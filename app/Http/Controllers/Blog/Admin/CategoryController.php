@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends AdminBaseController
@@ -13,7 +14,9 @@ class CategoryController extends AdminBaseController
      */
     public function index()
     {
-        //
+        $paginatedItems = BlogCategory::paginate(5);
+
+        return view('blog.admin.category.index', ['items' => $paginatedItems]);
     }
 
     /**
@@ -23,7 +26,7 @@ class CategoryController extends AdminBaseController
      */
     public function create()
     {
-        //
+        dd(__METHOD__);
     }
 
     /**
@@ -34,7 +37,7 @@ class CategoryController extends AdminBaseController
      */
     public function store(Request $request)
     {
-        //
+        dd(__METHOD__);
     }
 
     /**
@@ -45,7 +48,7 @@ class CategoryController extends AdminBaseController
      */
     public function edit($id)
     {
-        //
+        dd(__METHOD__);
     }
 
     /**
@@ -57,6 +60,6 @@ class CategoryController extends AdminBaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        dd(__METHOD__);
     }
 }
