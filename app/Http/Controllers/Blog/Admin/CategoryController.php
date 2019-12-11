@@ -16,7 +16,7 @@ class CategoryController extends AdminBaseController
     {
         $paginatedItems = BlogCategory::paginate(15);
 
-        return view('blog.admin.category.index', ['items' => $paginatedItems]);
+        return view('blog.admin.categories.index', ['items' => $paginatedItems]);
     }
 
     /**
@@ -51,7 +51,7 @@ class CategoryController extends AdminBaseController
         $item = BlogCategory::findOrFail($id);
         $categoryList = BlogCategory::all();
 
-        return view('blog.admin.category.edit', compact('item', 'categoryList'));
+        return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
 
     /**
@@ -63,6 +63,18 @@ class CategoryController extends AdminBaseController
      */
     public function update(Request $request, $id)
     {
-        dd(__METHOD__, $request->all(), $id);
+        $id =1111;
+        $item = BlogCategory::find($id);
+        if(empty($item)) {
+            return back()->withErrors(['msg' => "Запись с id=$id  не найдена"])->withInput();
+        }
+
+        $result = $item->fill($request->all())->save();
+
+        if($result) {
+            return redirect()->route('blog.admin.categories.edit', $item->id)->with(['success' => 'Успешно']);
+        } else {
+            return back()->withErrors(['msg' => "Ошибка сохранения"])->withInput();
+        }
     }
 }

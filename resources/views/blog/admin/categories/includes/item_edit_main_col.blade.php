@@ -7,10 +7,10 @@
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <label>Заголовок<input name="title" type="text" value="{{ $item->title }}" required class="form-control"></label>
+                    <label>Заголовок<input name="title" type="text" value="{{old('title', $item->title) }}" required class="form-control" size="50"></label>
                 </div>
                 <div class="form-group">
-                    <label>Идентификатор<input name="slug" type="text" value="{{ $item->slug }}" required class="form-control"></label>
+                    <label>Идентификатор<input name="slug" type="text" value="{{ old('slug', $item->slug) }}" required class="form-control" size="50"></label>
                 </div>
                 <div class="form-group">
                     <label>Родитель
@@ -25,7 +25,7 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    <label>Описание<textarea name="description" class="form-control">{{ $item->description }}</textarea></label>
+                    <label>Описание<textarea name="description" class="form-control" cols="50" rows="5">{{ old('description', $item->description) }}</textarea></label>
                 </div>
                 <div class="form-group d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">Сохранить</button>
