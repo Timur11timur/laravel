@@ -14,7 +14,7 @@ class CategoryController extends AdminBaseController
      */
     public function index()
     {
-        $paginatedItems = BlogCategory::paginate(5);
+        $paginatedItems = BlogCategory::paginate(15);
 
         return view('blog.admin.category.index', ['items' => $paginatedItems]);
     }
@@ -37,7 +37,7 @@ class CategoryController extends AdminBaseController
      */
     public function store(Request $request)
     {
-        dd(__METHOD__);
+        dd(__METHOD__, $request->all());
     }
 
     /**
@@ -48,7 +48,10 @@ class CategoryController extends AdminBaseController
      */
     public function edit($id)
     {
-        dd(__METHOD__);
+        $item = BlogCategory::findOrFail($id);
+        $categoryList = BlogCategory::all();
+
+        return view('blog.admin.category.edit', compact('item', 'categoryList'));
     }
 
     /**
@@ -60,6 +63,6 @@ class CategoryController extends AdminBaseController
      */
     public function update(Request $request, $id)
     {
-        dd(__METHOD__);
+        dd(__METHOD__, $request->all(), $id);
     }
 }
