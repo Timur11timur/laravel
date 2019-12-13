@@ -63,7 +63,6 @@ class CategoryController extends AdminBaseController
      */
     public function update(Request $request, $id)
     {
-        $id =1111;
         $item = BlogCategory::find($id);
         if(empty($item)) {
             return back()->withErrors(['msg' => "Запись с id=$id  не найдена"])->withInput();
