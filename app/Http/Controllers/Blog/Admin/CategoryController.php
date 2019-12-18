@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+use App\Http\Requests\BlogCategoryCreateRequest;
 use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Models\BlogCategory;
-use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends AdminBaseController
 {
@@ -27,18 +28,34 @@ class CategoryController extends AdminBaseController
      */
     public function create()
     {
-        dd(__METHOD__);
+        $item = new BlogCategory();
+        $categoryList = BlogCategory::all();
+
+        return view('blog.admin.categories.edit', compact('item', 'categoryList'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  BlogCategoryCreateRequest  $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogCategoryCreateRequest $request)
     {
-        dd(__METHOD__, $request->all());
+        $data = $request->input();
+        if (empty($data['slug'])) {
+            $data['slug'] = Str::slug($data['title'], '-');
+        }
+
+        $item = new BlogCategory($data);
+        $result = $item->save();
+
+        if($result) {
+            return redirect()->route('blog.admin.categories.index')->with(['success' => 'Успешно сохранено']);
+        } else {
+            return back()->withErrors(['msg' => "Ошибка сохранения"])->withInput();
+        }
     }
 
     /**
@@ -81,10 +98,17 @@ class CategoryController extends AdminBaseController
             return back()->withErrors(['msg' => "Запись с id=$id  не найдена"])->withInput();
         }
 
-        $result = $item->fill($request->all())->save();
+        $data = $request->all();
+
+        if (empty($data['slug'])) {
+            $data['slug'] = Str::slug($data['title'], '-');
+        }
+
+        //$result = $item->fill($data)->save();
+        $result = $item->update($data);
 
         if($result) {
-            return redirect()->route('blog.admin.categories.index')->with(['success' => 'Успешно сохранео']);
+            return redirect()->route('blog.admin.categories.index')->with(['success' => 'Успешно сохранено']);
         } else {
             return back()->withErrors(['msg' => "Ошибка сохранения"])->withInput();
         }

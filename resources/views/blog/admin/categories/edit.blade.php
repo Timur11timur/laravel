@@ -17,9 +17,15 @@
         @endif
 
         @php /** @var \App\Models\BlogCategory $item */ @endphp
-        <form method="POST" action="{{ route('blog.admin.categories.update', $item->id) }}">
-            <div class="row justify-content-center">
+
+        @if($item->exists)
+            <form method="POST" action="{{ route('blog.admin.categories.update', $item->id) }}">
                 @method('PATCH')
+        @else
+            <form method="POST" action="{{ route('blog.admin.categories.store') }}">
+        @endif
+
+            <div class="row justify-content-center">
                 @csrf
                 <div class="col-8">
                     @include('blog.admin.categories.includes.item_edit_main_col')
