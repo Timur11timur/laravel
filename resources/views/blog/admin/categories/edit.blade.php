@@ -7,7 +7,7 @@
             <div class="row justify-content-center">
                 <div class="col">
                     <div class="alert alert-danger" role="alert">
-                        {{ $errors->first() }}j
+                        {{ $errors->first() }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

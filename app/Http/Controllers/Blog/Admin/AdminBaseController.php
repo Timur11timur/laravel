@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog\Admin;
 
 use App\Http\Controllers\Blog\BaseController;
+use App\Http\Requests\BlogCategoryUpdateRequest;
 use Illuminate\Http\Request;
 
 abstract class AdminBaseController extends BaseController
@@ -52,11 +53,11 @@ abstract class AdminBaseController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  BlogCategoryUpdateRequest $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogCategoryUpdateRequest $request, $id)
     {
         dd(__METHOD__, $request->all(), $id);
     }
