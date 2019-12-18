@@ -71,7 +71,7 @@ class CategoryController extends AdminBaseController
         $result = $item->fill($request->all())->save();
 
         if($result) {
-            return redirect()->route('blog.admin.categories.edit', $item->id)->with(['success' => 'Успешно']);
+            return redirect()->route('blog.admin.categories.index')->with(['success' => 'Успешно сохранео']);
         } else {
             return back()->withErrors(['msg' => "Ошибка сохранения"])->withInput();
         }

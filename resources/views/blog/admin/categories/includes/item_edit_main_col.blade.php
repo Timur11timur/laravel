@@ -28,6 +28,7 @@
                     <label>Описание<textarea name="description" class="form-control" cols="50" rows="5">{{ old('description', $item->description) }}</textarea></label>
                 </div>
                 <div class="form-group d-flex justify-content-end">
+                    <a href="{{ route('blog.admin.categories.index') }}" class="btn btn-secondary mr-2">Назад</a>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </div>
             </div>

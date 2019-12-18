@@ -2,6 +2,20 @@
 
 @section('content')
     <div class="container">
+
+        @if(session('success'))
+            <div class="row justify-content-center">
+                <div class="col">
+                    <div class="alert alert-success" role="alert">
+                        {{ session()->get('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <div class="row justify-content-center">
             <div class="col">
                 <nav class="navbar navbar-toggleable navbar-light bg-faded">
