@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog\Admin;
 use App\Http\Controllers\Blog\BaseController;
 use App\Http\Requests\BlogCategoryCreateRequest;
 use App\Http\Requests\BlogCategoryUpdateRequest;
+use App\Repositories\BlogCategoryRepository;
 use Illuminate\Http\Request;
 
 abstract class AdminBaseController extends BaseController
@@ -41,12 +42,12 @@ abstract class AdminBaseController extends BaseController
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @param $id
+     * @param BlogCategoryRepository $categoryRepositiry
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,  BlogCategoryRepository $categoryRepoоsitiry)
     {
         dd(__METHOD__, $id);
     }
