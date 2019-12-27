@@ -11,56 +11,10 @@ use Illuminate\Http\Request;
 abstract class AdminBaseController extends BaseController
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * AdminBaseController constructor.
      */
-    public function index()
+    public function __construct()
     {
-        dd(__METHOD__);
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        dd(__METHOD__);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  BlogCategoryCreateRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(BlogCategoryCreateRequest $request)
-    {
-        dd(__METHOD__, $request->all());
-    }
-
-    /**
-     * @param $id
-     * @param BlogCategoryRepository $categoryRepositiry
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id,  BlogCategoryRepository $categoryRepoоsitiry)
-    {
-        dd(__METHOD__, $id);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  BlogCategoryUpdateRequest $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(BlogCategoryUpdateRequest $request, $id)
-    {
-        dd(__METHOD__, $request->all(), $id);
     }
 }
