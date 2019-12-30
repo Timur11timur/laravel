@@ -86,6 +86,7 @@
 
                 <div class="links">
                     <a href="{{ route('blog.admin.categories.index') }}">admin/blog/categories</a>
+                    <a href="{{ route('blog.admin.posts.index') }}">admin/blog/posts</a>
                 </div>
             </div>
         </div>
