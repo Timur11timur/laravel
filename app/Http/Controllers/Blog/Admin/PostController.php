@@ -115,18 +115,6 @@ class PostController extends AdminBaseController
 
         $data = $request->all();
 
-        if(empty($data['slug'])) {
-            $data['slug'] = Str::slug($data['title']);
-        }
-        if(isset($data['is_published'])) {
-            $data['is_published'] = 1;
-            if(!isset($data['published_at'])) {
-                $data['published_at'] = Carbon::now();
-            }
-        } else {
-            $data['is_published'] = 0;
-        }
-
         $result = $item->update($data);
 
         if($result) {

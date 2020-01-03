@@ -10,7 +10,7 @@
                     <label>Заголовок<input name="title" type="text" value="{{old('title', $item->title) }}" required class="form-control" size="50"></label>
                 </div>
                 <div class="form-group">
-                    <label>Идентификатор<input name="slug" type="text" value="{{ old('slug', $item->slug) }}" required class="form-control" size="50"></label>
+                    <label>Идентификатор<input name="slug" type="text" value="{{ old('slug', $item->slug) }}" class="form-control" size="50"></label>
                 </div>
                 <div class="form-group">
                     <label>Родитель
