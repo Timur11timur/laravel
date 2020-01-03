@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class BlogPostUpdateRequest extends FormRequest
+class BlogPostCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,31 @@ class BlogPostUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'         => 'required|min:5|max:200',
+            'title'         => 'required|min:5|max:200|unique:blog_posts',
             'slug'          => 'max:200',
             'excerpt'       => 'max:200',
             'content_raw'   => 'required|string|min:5|max:10000',
             'category_id'   => 'required|integer|exists:blog_categories,id',
         ];
     }
+
+    /**
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.required' => 'Введите заголовок статьи',
+            'content_raw.min' => 'Минимальная длинна статьи [:min] символов',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'title' => 'Заголовок',
+        ];
+    }
+
+
 }

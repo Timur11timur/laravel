@@ -8,6 +8,11 @@
                 <div class="col">
                     <div class="alert alert-danger" role="alert">
                         {{ $errors->first() }}
+                        <ul>
+                            @foreach($errors->all() as $oneError)
+                                <li>{{ $oneError }}</li>
+                            @endforeach
+                        </ul>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
