@@ -35,10 +35,10 @@ class PostController extends AdminBaseController
      */
     public function index()
     {
-        $item = new BlogPost();
+        $paginator = $this->blogPostRepository->getAllWithPaginate();
         $categoryList = $this->blogCategoryRepository->getForComboBox();
 
-        return view('blog.admin.posts.edit', compact('item', 'categoryList'));
+        return view('blog.admin.posts.index', compact('paginator', 'categoryList'));
     }
 
     /**
@@ -48,9 +48,10 @@ class PostController extends AdminBaseController
      */
     public function create()
     {
-        //$paginator = $this->blogPostRepository->getAllWithPaginate();
+        $item = new BlogPost();
+        $categoryList = $this->blogCategoryRepository->getForComboBox();
 
-        //return view('blog.admin.posts.create', compact('paginator'));
+        return view('blog.admin.posts.edit', compact('item', 'categoryList'));
     }
 
     /**

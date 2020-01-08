@@ -110,13 +110,10 @@ class BlogPostObserver
      */
     private function setPublishedAt(BlogPost $modelsBlogPost)
     {
-        if(isset($modelsBlogPost->is_published)) {
-            $modelsBlogPost->is_published = 1;
+        if($modelsBlogPost->is_published) {
             if(!isset($modelsBlogPost->published_at)) {
                 $modelsBlogPost->published_at = Carbon::now();
             }
-        } else {
-            $modelsBlogPost->is_published = 0;
         }
     }
 
@@ -127,6 +124,11 @@ class BlogPostObserver
     {
         if(empty($modelsBlogPost->slug)) {
             $modelsBlogPost->slug = Str::slug($modelsBlogPost->title);
+        } else {
+            $modelsBlogPost->slug = Str::slug($modelsBlogPost->slug);
+            if(empty($modelsBlogPost->slug)) {
+                $modelsBlogPost->slug = Str::slug($modelsBlogPost->title);
+            }
         }
     }
 

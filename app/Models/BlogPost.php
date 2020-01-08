@@ -9,6 +9,8 @@ class BlogPost extends Model
 {
     use SoftDeletes;
 
+    const UNKNOWN_USER = 1;
+
     protected $fillable = [
         'title',
         'slug',
@@ -33,5 +35,21 @@ class BlogPost extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @param array $data
+     * @param array $options
+     * @return bool
+     */
+    public function update(array $data = [], array $options = [])
+    {
+        if(isset($data['is_published'])) {
+            $data['is_published'] = true;
+        } else {
+            $data['is_published'] = false;
+        }
+
+        return parent::update($data, $options);
     }
 }
