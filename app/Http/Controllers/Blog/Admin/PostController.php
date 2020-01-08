@@ -140,6 +140,34 @@ class PostController extends AdminBaseController
      */
     public function destroy($id)
     {
-        dd(__METHOD__, $id);
+        $result = BlogPost::destroy($id);
+
+        //full destroy
+        //$result = BlogPost::find($id)->forceDelete();
+
+        if($result) {
+            $route = route('blog.admin.posts.restore', $id);
+            return redirect()->route('blog.admin.posts.index')->with(['success' => "Запись с id=[" . $id . "] удалена. <a href='" . $route . "'>Восстановить</a>"]);
+        } else {
+            return back()->withErrors(['msg' => "Ошибка удаления"]);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        $result = BlogPost::withTrashed()->find($id);
+
+        if($result) {
+            $result->restore();
+            return redirect()->route('blog.admin.posts.index')->with(['success' => "Запись с id=[$id] восстановлена"]);
+        } else {
+            return back()->withErrors(['msg' => "Ошибка восстановления"]);
+        }
     }
 }

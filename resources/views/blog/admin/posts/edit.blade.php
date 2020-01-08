@@ -2,24 +2,8 @@
 
 @section('content')
     <div class="container">
-        @php /** @var \Illuminate\Support\ViewErrorBag $errors */ @endphp
-        @if($errors->any())
-            <div class="row justify-content-center">
-                <div class="col">
-                    <div class="alert alert-danger" role="alert">
-                        {{ $errors->first() }}
-                        <ul>
-                            @foreach($errors->all() as $oneError)
-                                <li>{{ $oneError }}</li>
-                            @endforeach
-                        </ul>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        @endif
+
+        @include('blog.admin.includes.errors')
 
         @php /** @var \App\Models\BlogPost $item */ @endphp
 
@@ -42,17 +26,13 @@
         </form>
 
         @if($item->exists)
-            <div class="row justify-content-end fixed-bottom">
-                <div class="col-1">
-                    <div class="card">
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('blog.admin.posts.destroy', $item->id) }}" class=" d-flex justify-content-center">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="btn btn-primary">Удалить</button>
-                            </form>
-                        </div>
-                    </div>
+            <div class="card position-absolute" style="right: 0;">
+                <div class="card-body">
+                    <form method="POST" action="{{ route('blog.admin.posts.destroy', $item->id) }}" class=" d-flex justify-content-center">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Удалить</button>
+                    </form>
                 </div>
             </div>
         @endif
