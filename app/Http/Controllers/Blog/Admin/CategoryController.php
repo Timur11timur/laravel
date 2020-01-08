@@ -30,7 +30,7 @@ class CategoryController extends AdminBaseController
     public function index()
     {
         //$paginatedItems = BlogCategory::paginate(10);
-        $paginatedItems = $this->blogCategoryRepository->getAllWithPaginate(10);
+        $paginatedItems = $this->blogCategoryRepository->getAllWithPaginate(15);
 
         return view('blog.admin.categories.index', ['items' => $paginatedItems]);
     }
