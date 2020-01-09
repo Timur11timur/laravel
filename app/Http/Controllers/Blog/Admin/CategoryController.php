@@ -42,7 +42,7 @@ class CategoryController extends AdminBaseController
      */
     public function create()
     {
-        $item = new BlogCategory();
+        $item = BlogCategory::make();
         $categoryList = $this->blogCategoryRepository->getForComboBox();
 
         return view('blog.admin.categories.edit', compact('item', 'categoryList'));
@@ -59,7 +59,7 @@ class CategoryController extends AdminBaseController
     {
         $data = $request->input();
 
-        $item = new BlogCategory($data);
+        $item = BlogCategory::create($data);
         $result = $item->save();
 
         if($result) {
@@ -78,7 +78,7 @@ class CategoryController extends AdminBaseController
      */
     public function edit($id)
     {
-        //$categoryRepositiry = new BlogCategoryRepository();
+        //$categoryRepositiry = BlogCategoryRepository::make();
         //$categoryRepositiry = app(BlogCategoryRepository::class);
 
         //$item = BlogCategory::findOrFail($id);
